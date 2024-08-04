@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket com Flask</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button id="sendMessage">Send Message</button>
+    <div id="response"></div>
+
+    <script>
+        var socket = io();
+
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            var message = document.getElementById('messageInput').value;
+            socket.send(message);
+        });
+
+        socket.on('message', function(data) {
+            document.getElementById('response').innerText = data;
+        });
+    </script>
+</body>
+</html>
